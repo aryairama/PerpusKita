@@ -14,7 +14,7 @@
     responsive: true,
     processing: true,
     serverSide: true,
-    ajax: "borrowsbookslist",
+    ajax: "/borrows/bookslist",
     columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",
