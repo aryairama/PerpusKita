@@ -328,17 +328,19 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
                     <div class="table-responsive">
                         <table id="tabel_book" class="display table table-hover nowrap  w-100" cellspacing="0">
                             <thead>
-                                <th>No</th>
-                                <th>Book Id</th>
-                                <th>Cover</th>
-                                <th>Tite</th>
-                                <th>Author</th>
-                                <th>Publisher</th>
-                                <th>Category</th>
-                                <th>Slug</th>
-                                <th>Synopsis</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Book Id</th>
+                                    <th>Cover</th>
+                                    <th>Tite</th>
+                                    <th>Author</th>
+                                    <th>Publisher</th>
+                                    <th>Category</th>
+                                    <th>Slug</th>
+                                    <th>Synopsis</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>
                         </table>
                     </div>

@@ -4,10 +4,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<title>PerpusKita @yield('title')</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="assets/img/icon.ico" type="image/x-icon"/>
+	<link rel="icon" href="{{ asset('assets/img/icon.ico') }}" type="image/x-icon"/>
 
 	<!-- Fonts and icons -->
-	<script src="/assets/js/plugin/webfont/webfont.min.js"></script>
+	<script src="{{ asset('/assets/js/plugin/webfont/webfont.min.js') }}"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
@@ -18,12 +18,13 @@
 		});
 	</script>
 
-	<!-- CSS Files -->
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-	<link rel="stylesheet" href="/assets/css/atlantis.min.css">
+	<link rel="stylesheet" href="{{ asset('/assets/css/atlantis.min.css') }}">
 
 	<!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="/assets/css/demo.css">
+    <link rel="stylesheet" href="{{ asset('/assets/css/demo.css') }}">
     @yield('css')
 </head>
 <body>
@@ -364,62 +365,22 @@
 							</span>
 							<h4 class="text-section">Menu</h4>
 						</li>
-						<li class="nav-item">
+						<li class="nav-item @yield('borrow1')">
 							<a data-toggle="collapse" href="#base">
 								<i class="fas fa-layer-group"></i>
-								<p>Database</p>
-								<span class="caret"></span>
+								<p class="text-truncate">Borrow & Return Books</p>
+								<span class="badge badge-primary">2</span>
 							</a>
-							<div class="collapse" id="base">
+							<div class="collapse @yield('borrow2')" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="components/avatars.html">
-											<span class="sub-item">Avatars</span>
+										<a href="{{ route('borrows.index') }}">
+											<span class="sub-item">Create borrow books</span>
 										</a>
 									</li>
 									<li>
-										<a href="components/buttons.html">
-											<span class="sub-item">Buttons</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/gridsystem.html">
-											<span class="sub-item">Grid System</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/panels.html">
-											<span class="sub-item">Panels</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/notifications.html">
-											<span class="sub-item">Notifications</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/sweetalert.html">
-											<span class="sub-item">Sweet Alert</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/font-awesome-icons.html">
-											<span class="sub-item">Font Awesome Icons</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/simple-line-icons.html">
-											<span class="sub-item">Simple Line Icons</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/flaticons.html">
-											<span class="sub-item">Flaticons</span>
-										</a>
-									</li>
-									<li>
-										<a href="components/typography.html">
-											<span class="sub-item">Typography</span>
+										<a href="{{ route('borrows.list') }}">
+											<span class="sub-item">Borrow books list</span>
 										</a>
 									</li>
 								</ul>
@@ -445,7 +406,14 @@
 								<p>Book</p>
 								<span class="badge {{ Route::is('book.index') ? 'badge-success' : 'badge-primary' }}">1</span>
 							</a>
-						</li>
+                        </li>
+                        {{-- <li class="nav-item {{ Route::is('borrows.index') ? 'active' : '' }}">
+							<a href="{{ route('borrows.index') }}">
+								<i class="fas fa-book-medical"></i>
+								<p>Borrow Books</p>
+								<span class="badge {{ Route::is('borrows.index') ? 'badge-success' : 'badge-primary' }}">1</span>
+							</a>
+						</li> --}}
 					</ul>
 				</div>
 			</div>
@@ -611,28 +579,28 @@
 	<script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/b-1.6.5/cr-1.5.2/fc-3.3.1/fh-3.1.7/r-2.2.6/sc-2.0.3/sb-1.0.0/sp-1.2.1/datatables.min.js">
     </script>
-	<script src="assets/js/core/popper.min.js"></script>
-	<script src="assets/js/core/bootstrap.min.js"></script>
+	<script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
+	<script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
 
 	<!-- jQuery UI -->
-	<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-	<script src="assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
+	<script src="{{ asset('assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>
 
 	<!-- jQuery Scrollbar -->
-	<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
 
 
 	<!-- Chart JS -->
-	<script src="assets/js/plugin/chart.js/chart.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/chart.js/chart.min.js') }}"></script>
 
 	<!-- jQuery Sparkline -->
-	<script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js') }}"></script>
 
 	<!-- Chart Circle -->
-	<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/chart-circle/circles.min.js') }}"></script>
 
 	<!-- Bootstrap Notify -->
-	<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script src="{{ asset('assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
 
 	{{-- <!-- jQuery Vector Maps -->
 	<script src="assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
@@ -647,10 +615,10 @@
         crossorigin="anonymous"></script>
 
 	<!-- Atlantis JS -->
-	<script src="assets/js/atlantis.min.js"></script>
+	<script src="{{ asset('assets/js/atlantis.min.js') }}"></script>
 
 	<!-- Atlantis DEMO methods, don't include it in your project! -->
-	<script src="assets/js/setting-demo.js"></script>
+	<script src="{{ asset('assets/js/setting-demo.js') }}"></script>
     {{-- <script src="assets/js/demo.js"></script> --}}
     @yield('js')
 	<script>

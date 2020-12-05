@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function borrows()
+    {
+        return $this->hasMany("App\borrowed_book", "id", "user_id");
+    }
 }

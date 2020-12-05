@@ -369,13 +369,15 @@ $(function () {
                                 <table id="tabel_petugas" class="display table table-hover nowrap  w-100"
                                     cellspacing="0">
                                     <thead>
-                                        <th>No</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Email</th>
-                                        <th>Alamat</th>
-                                        <th>No.Hp</th>
-                                        <th>Gender</th>
-                                        <th>Action</th>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Email</th>
+                                            <th>Alamat</th>
+                                            <th>No.Hp</th>
+                                            <th>Gender</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
                                 </table>
                             </div>
@@ -397,7 +399,6 @@ $(function () {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

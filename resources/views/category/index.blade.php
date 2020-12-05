@@ -230,9 +230,11 @@ $(function () {
                     <div class="table-responsive">
                         <table id="tabel_category" class="display table table-hover nowrap  w-100" cellspacing="0">
                             <thead>
-                                <th>No</th>
-                                <th>Category Name</th>
-                                <th>Action</th>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Category Name</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>
                         </table>
                     </div>
