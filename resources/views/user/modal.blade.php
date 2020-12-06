@@ -67,7 +67,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Tutup</button>
-                    <input type="submit" value="Simpan" class="btn btn-success btn-submit">
+                    <input type="submit" value="Simpan" class="btn btn-success btn-submit btn-user-save">
                 </div>
             </form>
         </div>

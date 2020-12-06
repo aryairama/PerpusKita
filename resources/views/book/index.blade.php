@@ -22,7 +22,7 @@ All Book
     responsive:true,
     processing: true,
     serverSide: true,
-    ajax: "book",
+    ajax: "/book",
     columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",
@@ -267,6 +267,9 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
                     data: data,
                     processData: false,
                     contentType: false,
+                    beforeSend: function () {
+                        $(`.btn-book-save`).attr('disabled', true)
+                    },
                     success: function (ress) {
                         if (ress.method === "save") {
                             notifAlert1("Success", "Book data has been saved successfully",
@@ -276,11 +279,13 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
                                 "success")
                         }
                         $('#modal_dialog').modal('hide')
+                        $(`.btn-book-save`).attr('disabled', false)
                     },
                     error: function (xhr, status, error) {
                         if(xhr.status == 404){
                             notifAlert1('Error', 'Data missing', 'error')
                         }
+                        $(`.btn-book-save`).attr('disabled', false)
                         let all_error = JSON.parse(xhr.responseText)
                         $.each(all_error.errors, function (key, error) {
                             $(`#${key}`).parent().append(`
@@ -326,7 +331,7 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tabel_book" class="display table table-hover nowrap  w-100" cellspacing="0">
+                        <table id="tabel_book" class="display table table-hover wrap  w-100" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -336,10 +341,10 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
                                     <th>Author</th>
                                     <th>Publisher</th>
                                     <th>Category</th>
-                                    <th>Slug</th>
-                                    <th>Synopsis</th>
+                                    <th class="none">Slug</th>
+                                    <th class="none">Synopsis</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th class="none">Action</th>
                                 </tr>
                             </thead>
                         </table>

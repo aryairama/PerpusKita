@@ -16,7 +16,7 @@ All Category
     var table = $("#tabel_category").DataTable({
     processing: true,
     serverSide: true,
-    ajax: "category",
+    ajax: "/category",
     columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",
@@ -168,6 +168,9 @@ $(function () {
                     data: data,
                     processData: false,
                     contentType: false,
+                    beforeSend: function () {
+                        $(`.btn-category-save`).attr('disabled', true)
+                    },
                     success: function (ress) {
                         console.log(ress);
                         if (ress.method === "save") {
@@ -178,11 +181,13 @@ $(function () {
                                 "success")
                         }
                         $('#modal_dialog').modal('hide')
+                        $(`.btn-category-save`).attr('disabled', false)
                     },
                     error: function (xhr, status, error) {
                         if(xhr.status == 404){
                             notifAlert1('Error', 'Data missing', 'error')
                         }
+                        $(`.btn-category-save`).attr('disabled', false)
                         let all_error = JSON.parse(xhr.responseText)
                         $.each(all_error.errors, function (key, error) {
                             $(`#${key}`).parent().append(`

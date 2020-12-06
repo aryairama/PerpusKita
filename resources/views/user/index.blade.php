@@ -18,7 +18,7 @@ All User
     responsive: true,
     processing: true,
     serverSide: true,
-    ajax: "user/listpetugas",
+    ajax: "/user/listpetugas",
     columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",
@@ -59,7 +59,7 @@ var table2 = $("#tabel_siswa").DataTable({
     responsive: true,
     processing: true,
     serverSide: true,
-    ajax: "user/listsiswa",
+    ajax: "/user/listsiswa",
     columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",
@@ -292,6 +292,9 @@ $(function () {
                     data: data,
                     processData: false,
                     contentType: false,
+                    beforeSend: function () {
+                        $(`.btn-user-save`).attr('disabled', true)
+                    },
                     success: function (ress) {
                         if (ress.method === "save") {
                             notifAlert1("Success", "User data has been saved successfully",
@@ -301,11 +304,13 @@ $(function () {
                                 "success")
                         }
                         $('#modal_dialog').modal('hide')
+                        $(`.btn-user-save`).attr('disabled', false)
                     },
                     error: function (xhr, status, error) {
                         if(xhr.status == 404){
                             notifAlert1('Error', 'Data missing', 'error')
                         }
+                        $(`.btn-user-save`).attr('disabled', false)
                         let all_error = JSON.parse(xhr.responseText)
                         $.each(all_error.errors, function (key, error) {
                             $(`#${key}`).parent().append(`
