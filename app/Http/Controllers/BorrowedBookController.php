@@ -131,7 +131,8 @@ class BorrowedBookController extends Controller
 
     public function borrowBooksList(Request $request)
     {
-        $borrow_book = borrowed_book::with('books')->with('users')->orderBy('id', 'ASC')->get();
+        $this->authorize('rolePetugas');
+        $borrow_book = borrowed_book::with('books')->with('users')->orderBy('id', 'ASC');
         if ($request->ajax()) {
             return DataTables::of($borrow_book)
             ->addIndexColumn()

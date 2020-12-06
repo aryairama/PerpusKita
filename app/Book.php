@@ -20,4 +20,9 @@ class Book extends Model
     {
         return $this->hasMany("App\borrowed_book", "id", "book_id");
     }
+
+    public function returned_book()
+    {
+        return $this->hasMany("App\returned_book", "id", "book_id");
+    }
 }

@@ -47,6 +47,9 @@ function borrow_book(id) {
     })
 }
 
+function return_book(id){
+
+}
 function notifAlert1(header, pesan, type) {
     Swal.fire(`${header}`, `${pesan}`, `${type}`).then(result => {
         if (result.isConfirmed) {

@@ -32,4 +32,6 @@ Route::group(['middleware' => ['auth']], function () {
     //router crud borrowed book
     Route::get('borrows/bookslist', 'BorrowedBookController@borrowBooksList')->name('borrows.list');
     Route::resource('borrows', 'BorrowedBookController');
+    //router crud returned book
+    Route::resource('returns', 'ReturnedBookController');
 });

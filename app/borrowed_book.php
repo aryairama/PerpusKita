@@ -21,4 +21,9 @@ class borrowed_book extends Model
     {
         return $this->belongsTo("App\User", "user_id", "id");
     }
+
+    public function returned_book()
+    {
+        return $this->hasOne("App\returned_book", "id", "borrowed_book_id");
+    }
 }

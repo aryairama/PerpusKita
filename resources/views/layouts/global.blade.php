@@ -377,15 +377,23 @@
 										<a href="{{ route('borrows.index') }}">
 											<span class="sub-item">Create borrow books</span>
 										</a>
-									</li>
+                                    </li>
+                                    @can('rolePetugas')
 									<li>
 										<a href="{{ route('borrows.list') }}">
 											<span class="sub-item">Borrow books list</span>
 										</a>
-									</li>
+                                    </li>
+                                    <li>
+										<a href="{{ route('returns.index') }}">
+											<span class="sub-item">Return books list</span>
+										</a>
+                                    </li>
+                                    @endcan
 								</ul>
 							</div>
                         </li>
+                        @can('rolePetugas')
                         <li class="nav-item {{ Route::is('user.index') ? 'active' : '' }}">
 							<a href="{{ route('user.index') }}">
 								<i class="fas fa-users"></i>
@@ -407,6 +415,7 @@
 								<span class="badge {{ Route::is('book.index') ? 'badge-success' : 'badge-primary' }}">1</span>
 							</a>
                         </li>
+                        @endcan
                         {{-- <li class="nav-item {{ Route::is('borrows.index') ? 'active' : '' }}">
 							<a href="{{ route('borrows.index') }}">
 								<i class="fas fa-book-medical"></i>

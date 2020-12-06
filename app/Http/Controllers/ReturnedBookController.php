@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\returned_book;
+use \App\Book;
+use Carbon\Carbon;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Gate;
 
 class ReturnedBookController extends Controller
 {
@@ -11,9 +16,19 @@ class ReturnedBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $this->authorize('rolePetugas');
+        $return_book = returned_book::with('books')->with('users')->orderBy('id', 'ASC');
+        if ($request->ajax()) {
+            return DataTables::of($return_book)
+            ->addIndexColumn()
+            ->addColumn('action', function ($return_book) {
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }
+        return \view('returned_book.index');
     }
 
     /**
@@ -34,7 +49,7 @@ class ReturnedBookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

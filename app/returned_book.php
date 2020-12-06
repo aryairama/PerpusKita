@@ -11,4 +11,19 @@ class returned_book extends Model
     protected $primaryKey = "id";
     protected $fillable = ["user_id","book_id","return_date","borrowed_book_id","status"];
     public $timestamps = false;
+
+    public function users()
+    {
+        return $this->belongsTo("App\User", "user_id", "id");
+    }
+
+    public function books()
+    {
+        return $this->belongsTo("App\Book", "book_id", "id");
+    }
+
+    public function borrows()
+    {
+        return $this->belongsTo("App\borrowed_book", "borrowed_book_id", "id");
+    }
 }
