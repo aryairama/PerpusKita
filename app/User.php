@@ -39,11 +39,11 @@ class User extends Authenticatable
 
     public function borrows()
     {
-        return $this->hasMany("App\borrowed_book", "id", "user_id");
+        return $this->hasMany(borrowed_book::class, "user_id", "id");
     }
 
     public function returned_book()
     {
-        return $this->hasMany("App\returned_book", "id", "user_id");
+        return $this->hasMany(returned_book::class, "user_id", "id");
     }
 }

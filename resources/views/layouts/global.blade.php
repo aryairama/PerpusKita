@@ -11,7 +11,7 @@
 	<script>
 		WebFont.load({
 			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
+			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['/assets/css/fonts.min.css']},
 			active: function() {
 				sessionStorage.fonts = true;
 			}
@@ -34,7 +34,7 @@
 			<div class="logo-header" data-background-color="blue">
 
 				<a href="index.html" class="logo">
-					<img src="../assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+					<img src="{{ asset('/assets/img/logo.svg') }}" alt="navbar brand" class="navbar-brand">
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
@@ -72,7 +72,7 @@
 								<i class="fa fa-search"></i>
 							</a>
 						</li>
-						<li class="nav-item dropdown hidden-caret">
+						{{-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-envelope"></i>
 							</a>
@@ -88,7 +88,7 @@
 										<div class="notif-center">
 											<a href="#">
 												<div class="notif-img">
-													<img src="../assets/img/jm_denis.jpg" alt="Img Profile">
+													<img src="/assets/img/jm_denis.jpg" alt="Img Profile">
 												</div>
 												<div class="notif-content">
 													<span class="subject">Jimmy Denis</span>
@@ -100,7 +100,7 @@
 											</a>
 											<a href="#">
 												<div class="notif-img">
-													<img src="../assets/img/chadengle.jpg" alt="Img Profile">
+													<img src="/assets/img/chadengle.jpg" alt="Img Profile">
 												</div>
 												<div class="notif-content">
 													<span class="subject">Chad</span>
@@ -112,7 +112,7 @@
 											</a>
 											<a href="#">
 												<div class="notif-img">
-													<img src="../assets/img/mlane.jpg" alt="Img Profile">
+													<img src="/assets/img/mlane.jpg" alt="Img Profile">
 												</div>
 												<div class="notif-content">
 													<span class="subject">Jhon Doe</span>
@@ -124,7 +124,7 @@
 											</a>
 											<a href="#">
 												<div class="notif-img">
-													<img src="../assets/img/talha.jpg" alt="Img Profile">
+													<img src="/assets/img/talha.jpg" alt="Img Profile">
 												</div>
 												<div class="notif-content">
 													<span class="subject">Talha</span>
@@ -141,8 +141,8 @@
 									<a class="see-all" href="javascript:void(0);">See all messages<i class="fa fa-angle-right"></i> </a>
 								</li>
 							</ul>
-						</li>
-						<li class="nav-item dropdown hidden-caret">
+						</li> --}}
+						{{-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link dropdown-toggle" href="#" id="notifDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fa fa-bell"></i>
 								<span class="notification">4</span>
@@ -174,7 +174,7 @@
 											</a>
 											<a href="#">
 												<div class="notif-img">
-													<img src="../assets/img/profile2.jpg" alt="Img Profile">
+													<img src="/assets/img/profile2.jpg" alt="Img Profile">
 												</div>
 												<div class="notif-content">
 													<span class="block">
@@ -199,8 +199,8 @@
 									<a class="see-all" href="javascript:void(0);">See all notifications<i class="fa fa-angle-right"></i> </a>
 								</li>
 							</ul>
-						</li>
-						<li class="nav-item dropdown hidden-caret">
+						</li> --}}
+						{{-- <li class="nav-item dropdown hidden-caret">
 							<a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
 								<i class="fas fa-layer-group"></i>
 							</a>
@@ -252,18 +252,18 @@
 									</div>
 								</div>
 							</div>
-						</li>
+						</li> --}}
 						<li class="nav-item dropdown hidden-caret">
 							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
 								<div class="avatar-sm">
-									<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+									<img src="/assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
 								</div>
 							</a>
 							<ul class="dropdown-menu dropdown-user animated fadeIn">
 								<div class="dropdown-user-scroll scrollbar-outer">
 									<li>
 										<div class="user-box">
-											<div class="avatar-lg"><img src="../assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
+											<div class="avatar-lg"><img src="/assets/img/profile.jpg" alt="image profile" class="avatar-img rounded"></div>
 											<div class="u-text">
 												<h4>Hizrian</h4>
 												<p class="text-muted">hello@example.com</p><a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
@@ -298,7 +298,7 @@
 				<div class="sidebar-content">
 					<div class="user">
 						<div class="avatar-sm float-left mr-2">
-							<img src="../assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+							<img src="{{ asset('/assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
 						</div>
 						<div class="info">
 							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
@@ -373,11 +373,20 @@
 							</a>
 							<div class="collapse @yield('borrow2')" id="base">
 								<ul class="nav nav-collapse">
+                                    @can('roleSiswa')
 									<li>
 										<a href="{{ route('borrows.index') }}">
 											<span class="sub-item">Create borrow books</span>
 										</a>
                                     </li>
+                                    @endcan
+                                    @can('rolePetugasSiswa')
+                                    <li>
+										<a href="{{ route('returns.borrows.book') }}">
+											<span class="sub-item">Borrow & return books list</span>
+										</a>
+                                    </li>
+                                    @endcan
                                     @can('rolePetugas')
 									<li>
 										<a href="{{ route('borrows.list') }}">

@@ -161,7 +161,7 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
             $('.create form').validate().resetForm()
             $('#id').val(data.id)
             $('#title').val(data.title)
-            $('#synopsis').html(data.synopsis)
+            $('#synopsis').val(data.synopsis)
             $('#author').val(data.author)
             $('#publisher').val(data.publisher)
             $('.gambar').empty().append(input_img)

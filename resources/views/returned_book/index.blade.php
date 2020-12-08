@@ -39,8 +39,8 @@ show
             name: "books.title"
         },
         {
-            data: "status",
-            name: "status"
+            data: "status_return",
+            name: "status_return"
         },
         {
             data: "return_date",

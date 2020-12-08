@@ -103,21 +103,21 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail(\decrypt($id));
-            if($request->password == null){
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->roles = $request->roles;
-            $user->address = $request->address;
-            $user->phone = $request->phone;
-            $user->gender = $request->gender;
+            if ($request->password == null) {
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->roles = $request->roles;
+                $user->address = $request->address;
+                $user->phone = $request->phone;
+                $user->gender = $request->gender;
             } else {
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = \Hash::make($request->password);
-            $user->roles = $request->roles;
-            $user->address = $request->address;
-            $user->phone = $request->phone;
-            $user->gender = $request->gender;
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = \Hash::make($request->password);
+                $user->roles = $request->roles;
+                $user->address = $request->address;
+                $user->phone = $request->phone;
+                $user->gender = $request->gender;
             }
             $user->save();
             return \Response::json(['method' => 'update'], 200);
@@ -158,12 +158,13 @@ class UserController extends Controller
         }
     }
 
-    public function user_siswa(Request $request){
-        $siswa = User::where('roles','siswa')->orderBy('id','ASC');
-        if($request->ajax()){
+    public function user_siswa(Request $request)
+    {
+        $siswa = User::where('roles', 'siswa')->orderBy('id', 'ASC');
+        if ($request->ajax()) {
             return DataTables::of($siswa)
             ->addIndexColumn()
-            ->addColumn('action',function($siswa){
+            ->addColumn('action', function ($siswa) {
                 $btn = '<a href="javascript:void(0)" class="edit badge badge-success" onclick="editForm(\''.encrypt($siswa->id).'\')">Edit</a>
                 <a href="javascript:void(0)" class="delete badge badge-danger" onclick="deleteForm(\''.encrypt($siswa->id).'\')">Delete</a>';
                 return  $btn;

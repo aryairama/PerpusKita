@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\borrowed_book;
 use \App\Book;
 use \App\Category;
+use \App\returned_book;
 use Carbon\Carbon;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Gate;
@@ -19,6 +20,7 @@ class BorrowedBookController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('roleSiswa');
         $categories = Category::orderBy('id', 'ASC')->get();
         $all_book = Book::with('categories')->where('status', 'ada')->paginate(4);
         $book = $request->search_book;
@@ -55,6 +57,7 @@ class BorrowedBookController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('roleSiswa');
         try {
             $check_book = Book::findOrFail($request->book_id);
             if ($check_book->status == "ada") {
@@ -63,7 +66,13 @@ class BorrowedBookController extends Controller
                 $borrow->book_id = $request->book_id;
                 $borrow->borrow_date = Carbon::now()->format('yy-m-d H:i:s');
                 $borrow->save();
+                $returned = new returned_book();
+                $returned->user_id = \Auth::user()->id;
+                $returned->book_id = $request->book_id;
+                $returned->borrowed_book_id = $borrow->id;
+                $returned->status_return = "pinjam";
                 $check_book->status = "pinjam";
+                $returned->save();
                 $check_book->save();
                 return \Response::json(['method' => 'save'], 200);
             } elseif ($check_book->status == "pinjam") {
@@ -86,6 +95,7 @@ class BorrowedBookController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('roleSiswa');
         try {
             $random_book =  Book::where('id', '!=', $id)->where('status', 'ada')->inRandomOrder()->limit(4)->get();
             $show_book = Book::findOrFail($id);
@@ -132,7 +142,7 @@ class BorrowedBookController extends Controller
     public function borrowBooksList(Request $request)
     {
         $this->authorize('rolePetugas');
-        $borrow_book = borrowed_book::with('books')->with('users')->orderBy('id', 'ASC');
+        $borrow_book = borrowed_book::with('books')->with('users');
         if ($request->ajax()) {
             return DataTables::of($borrow_book)
             ->addIndexColumn()

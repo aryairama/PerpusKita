@@ -35,6 +35,7 @@ function borrow_book(id) {
                     }
                 },
                 error: function (err) {
+                    console.log(err)
                     if (err.status == 404) {
                         notifAlert1('Error', 'Data Not Found', 'error')
                     } else if (err.status == 403) {
@@ -47,13 +48,11 @@ function borrow_book(id) {
     })
 }
 
-function return_book(id){
-
-}
 function notifAlert1(header, pesan, type) {
     Swal.fire(`${header}`, `${pesan}`, `${type}`).then(result => {
         if (result.isConfirmed) {
             location.reload()
+            window.location = "http://127.0.0.1:8000/borrows";
         }
     });
 }

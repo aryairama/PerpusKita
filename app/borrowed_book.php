@@ -14,16 +14,16 @@ class borrowed_book extends Model
 
     public function books()
     {
-        return $this->belongsTo("App\Book", "book_id", "id");
+        return $this->belongsTo(Book::class, "book_id", "id");
     }
 
     public function users()
     {
-        return $this->belongsTo("App\User", "user_id", "id");
+        return $this->belongsTo(User::class, "user_id", "id");
     }
 
     public function returned_book()
     {
-        return $this->hasOne("App\returned_book", "id", "borrowed_book_id");
+        return $this->hasOne(returned_book::class, "borrowed_book_id", "id");
     }
 }

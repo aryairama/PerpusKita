@@ -18,11 +18,11 @@ class Book extends Model
 
     public function borrows()
     {
-        return $this->hasMany("App\borrowed_book", "id", "book_id");
+        return $this->hasMany(borrowed_book::class, "book_id", "id");
     }
 
     public function returned_book()
     {
-        return $this->hasMany("App\returned_book", "id", "book_id");
+        return $this->hasMany(returned_book::class, "book_id", "id");
     }
 }

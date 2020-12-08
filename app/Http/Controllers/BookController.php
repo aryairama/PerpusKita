@@ -77,9 +77,11 @@ class BookController extends Controller
             $newBook->synopsis = $request->synopsis;
             $newBook->author = $request->author;
             $newBook->publisher = $request->publisher;
-            $cover = $request->file('cover');
-            $cover_path = $cover->store('book_cover', 'public');
-            $newBook->cover = $cover_path;
+            $image = $request->file('cover');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('storage/book_cover');
+            $image->move($destinationPath, $name);
+            $newBook->cover = 'book_cover/'.$name;
             $newBook->save();
             $newBook->categories()->attach($request->category);
             return \Response::json(['method' => 'save'], 200);
@@ -135,10 +137,13 @@ class BookController extends Controller
             $cover = $request->file('cover');
             if ($cover) {
                 if ($book->cover && file_exists(storage_path('app/public/' .$book->cover))) {
-                    \Storage::delete('public/'. $book->cover);
+                    unlink(public_path('storage/').$book->cover);
                 }
-                $new_cover_path = $cover->store('book_cover', 'public');
-                $book->cover = $new_cover_path;
+                $image = $request->file('cover');
+                $name = time().'.'.$image->getClientOriginalExtension();
+                $destinationPath = public_path('storage/book_cover');
+                $image->move($destinationPath, $name);
+                $book->cover = 'book_cover/'.$name;
             }
             $book->save();
             $book->categories()->sync($request->category);
@@ -159,7 +164,7 @@ class BookController extends Controller
         try {
             $book = Book::findOrFail($id);
             if ($book->cover && file_exists(storage_path('app/public/' . $book->cover))) {
-                \Storage::delete('public/'.$book->cover);
+                unlink(public_path('storage/').$book->cover);
             }
             $book->categories()->detach();
             $book->delete();
