@@ -78,7 +78,7 @@ class BookController extends Controller
             $newBook->author = $request->author;
             $newBook->publisher = $request->publisher;
             $image = $request->file('cover');
-            $name = time().'.'.$image->getClientOriginalExtension();
+            $name = date('mdYHis') . uniqid().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('storage/book_cover');
             $image->move($destinationPath, $name);
             $newBook->cover = 'book_cover/'.$name;
@@ -140,7 +140,7 @@ class BookController extends Controller
                     unlink(public_path('storage/').$book->cover);
                 }
                 $image = $request->file('cover');
-                $name = time().'.'.$image->getClientOriginalExtension();
+                $name = date('mdYHis') . uniqid().'.'.$image->getClientOriginalExtension();
                 $destinationPath = public_path('storage/book_cover');
                 $image->move($destinationPath, $name);
                 $book->cover = 'book_cover/'.$name;

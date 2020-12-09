@@ -36,4 +36,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('returns/verifreturn/{id}', 'ReturnedBookController@verifReturn');
     Route::get('returns/borrows/book', 'ReturnedBookController@borrowedReturnedIndex')->name('returns.borrows.book');
     Route::resource('returns', 'ReturnedBookController');
+    //router export excel
+    Route::get('export', 'ExportExcelController@indexAllExport')->name('index.export.excel');
+    Route::post('export/borrowreturnbook', 'ExportExcelController@allExportBorrowReturnBook')->name('export.excel.borrowreturn');
+    //router test
+    Route::get('test', 'test@index');
+    Route::post('test/store', 'test@store')->name('test.store');
 });
