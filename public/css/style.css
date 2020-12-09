@@ -1,0 +1,41 @@
+/*custom*/
+.modal-xl {
+    max-width: 50vw !important;
+}
+
+@media screen and (max-width: 768px) {
+    .modal-xl {
+        max-width: 95vw !important;
+    }
+}
+
+@media screen and (max-width: 1050px) and (min-width: 769px) {
+    .modal-xl {
+        max-width: 60vw !important;
+    }
+}
+
+.modal-body {
+    max-height: calc(100vh - 200px) !important;
+    overflow-y: auto !important;
+}
+
+.modal-header {
+    background: #1269db !important;
+}
+
+
+.form-control-custom:focus {
+    outline-style: none;
+    border-color: transparent;
+    border-bottom-color: #716aca !important;
+}
+
+.form-control-custom {
+    outline-style: none;
+    border-color: transparent !important;
+    border-bottom-color: #716aca !important;
+}
+
+
+

@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         //yajra datatable serverside
         Yajra\DataTables\DataTablesServiceProvider::class,
+        //chartjs
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
 
     ],
 

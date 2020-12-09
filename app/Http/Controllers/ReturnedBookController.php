@@ -104,6 +104,7 @@ class ReturnedBookController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('rolePetugasSiswa');
         try {
             $check_return = returned_book::findOrFail($id);
             $book = Book::findOrFail($check_return->book_id);
