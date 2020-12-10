@@ -174,9 +174,9 @@ class HomeController extends Controller
                 $user->phone = $request->phone;
                 $user->gender = $request->gender;
                 $user->save();
-                return \redirect()->route('user.profile')->with('status', 'Data successfully updated')->with('type','success');
+                return \redirect()->route('user.profile')->with('status', 'Data successfully updated')->with('type', 'success');
             } else {
-                return \redirect()->route('user.profile')->with('status', 'The password doesnt match the old password')->with('type','danger');
+                return \redirect()->route('user.profile')->with('status', 'The password doesnt match the old password')->with('type', 'danger');
             }
         } else {
             $user->name = $request->name;
@@ -185,7 +185,7 @@ class HomeController extends Controller
             $user->phone = $request->phone;
             $user->gender = $request->gender;
             $user->save();
-            return \redirect()->route('user.profile')->with('status', 'Data successfully updated')->with('type','success');
+            return \redirect()->route('user.profile')->with('status', 'Data successfully updated')->with('type', 'success');
         }
     }
 }
