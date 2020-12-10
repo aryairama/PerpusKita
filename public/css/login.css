@@ -1,0 +1,56 @@
+body {
+    font-family: 'Nerko One', cursive;
+}
+
+body,html {
+    background: url('/assets/img/ryunosuke-kikuno-KJ1FG2cy6fQ-unsplash.jpg') no-repeat center center fixed rgba(0, 0, 0, 0.349);
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    background-blend-mode: multiply;
+    }
+
+.form-control,
+.form-control:focus {
+    border-radius: 20px 20px 20px 20px;
+    background-color: #ebebeb;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-color: #ebebeb;
+}
+
+.bg-success {
+    background: linear-gradient(-45deg, #06418e, #1572e8) !important;
+}
+
+.card,
+.card-header {
+    border-radius: 20px 20px 0px 0px !important;
+}
+
+.card {
+    border-radius: 20px 20px 20px 20px !important;
+}
+
+.btn-block {
+    border-radius: 20px 20px 20px 20px;
+}
+
+#password {
+    position: relative;
+}
+
+#togglePassword {
+    position: absolute;
+    display: inline-block;
+    cursor: pointer;
+    right: 2rem;
+    top: 1rem;
+}
+
+.text-success {
+    color: #1572e8 !important;
+}
+
+

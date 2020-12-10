@@ -13,11 +13,13 @@
 Route::get('/', function () {
     return redirect()->route('login');
 });
+Auth::routes();
 Route::get('/register', function () {
     return redirect()->route('login');
 });
-Auth::routes();
-
+Route::get('/password/reset', function () {
+    return redirect()->route('login');
+});
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     //router crud user
