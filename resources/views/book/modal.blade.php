@@ -12,7 +12,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12 row-roles">
+                        <div class="col-md-12 row-book">
                             <div class="form-group">
                                 <input class="form-control form-control-custom p-0" type="text" name="id" id="id"
                                     placeholder="Book id">

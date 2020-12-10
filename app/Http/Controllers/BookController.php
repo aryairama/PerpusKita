@@ -26,7 +26,7 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $book = Book::with('categories')->orderBy('id', 'ASC');
+        $book = Book::with('categories');
         if ($request->ajax()) {
             return DataTables::of($book)
             ->addIndexColumn()

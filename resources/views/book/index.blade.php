@@ -22,12 +22,13 @@ All Book
     responsive:true,
     processing: true,
     serverSide: true,
+    order : [[ 0, "desc" ]],
     ajax: "/book",
     columns: [{
             data: "DT_RowIndex",
-            name: "DT_RowIndex",
+            name: "books.id",
             searchable: false,
-            orderable: false
+            orderable: true
         },
         {
             data: "id",
@@ -73,6 +74,11 @@ All Book
         }
     ]
 });
+
+window.onresize = function() {
+    table.columns.adjust().responsive.recalc();
+}
+
     $("#category").select2({
     dropdownParent: $("#modal_dialog"),
     ajax: {
@@ -132,6 +138,7 @@ function deleteForm(id) {
 let input_img = `<input type="file" class="custom-file-input" id="cover" name="cover" data-allowed-file-extensions="png jpg jpeg" data-max-file-size-preview="2M" data-errors-position="outside"/>`
     function addForm(){
     save_method = "add";
+    $('.update-book-cover').remove()
     $('input[name="_method"]').val("POST");
     $("#modal_dialog form")[0].reset();
     $(".modal-title").html("Create Book");
@@ -159,6 +166,14 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
             $('.modal-title').html('Change Book Data')
             $('#modal_dialog form')[0].reset()
             $('.create form').validate().resetForm()
+            $('.update-book-cover').remove()
+            $('.row-book').append(`
+            <div class="form-check update-book-cover">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" value="none" name="none">
+					<span class="form-check-sign">Update Book Cover</span>
+				</label>
+			</div>`)
             $('#id').val(data.id)
             $('#title').val(data.title)
             $('#synopsis').val(data.synopsis)
@@ -314,7 +329,6 @@ let input_img = `<input type="file" class="custom-file-input" id="cover" name="c
                 <h5 class="text-white op-7 mb-2">Create Read Update Delete Book Data</h5>
             </div>
             <div class="ml-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
                 <a href="#" onclick="addForm()" class="btn btn-secondary btn-round">Create Book</a>
             </div>
         </div>

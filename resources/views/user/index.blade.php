@@ -342,7 +342,6 @@ $(function () {
                 <h5 class="text-white op-7 mb-2">Create Read Update Delete User Data</h5>
             </div>
             <div class="ml-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
                 <a href="#" onclick="addForm()" class="btn btn-secondary btn-round">Create User</a>
             </div>
         </div>
