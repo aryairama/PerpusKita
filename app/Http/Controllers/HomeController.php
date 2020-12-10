@@ -26,12 +26,12 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         if (Gate::allows('rolePetugas')) {
-            $users = \App\User::where('roles','siswa')->get();
+            $users = \App\User::where('roles', 'siswa')->get();
             $user_list = array();
             $borrow_list = array();
-            foreach($users as $key => $user){
+            foreach ($users as $key => $user) {
                 $user_list[$key] =  $user->name;
-                $borrow_list[$key] = $this->countReturnBook($user->id,'kembali');
+                $borrow_list[$key] = $this->countReturnBook($user->id, 'kembali');
             }
             $chartPinjam = app()->chartjs
         ->name('chartPinjam')
@@ -85,7 +85,7 @@ class HomeController extends Controller
             $books = \App\Book::all()->count();
             $borrows = \App\returned_book::where('status_return', 'pinjam')->get()->count();
             $returns = \App\returned_book::where('status_return', 'kembali')->get()->count();
-            return view('home', \compact('users', 'books', 'borrows', 'returns','chartPinjam'));
+            return view('home', \compact('users', 'books', 'borrows', 'returns', 'chartPinjam'));
         } elseif (Gate::allows('roleSiswa')) {
             $borrow_return = \DB::table('returned_books')->join('users', 'users.id', '=', 'returned_books.user_id')
                                 ->join('books', 'books.id', '=', 'returned_books.book_id')
@@ -105,9 +105,87 @@ class HomeController extends Controller
         }
     }
 
-    public function countReturnBook($user_id,$status){
-        return \App\returned_book::where('status_return',$status)->whereHas('users',function($query) use ($user_id){
-            $query->where('id',$user_id);
+    public function countReturnBook($user_id, $status)
+    {
+        return \App\returned_book::where('status_return', $status)->whereHas('users', function ($query) use ($user_id) {
+            $query->where('id', $user_id);
         })->get()->count();
+    }
+
+    public function userIndex()
+    {
+        $user = \App\User::findOrFail(\Auth::user()->id);
+        return view('user.update', compact('user'));
+    }
+
+    public function userUpdate(Request $request)
+    {
+        $user = \App\User::findOrFail(\Auth::user()->id);
+        if ($request->password) {
+            if ($request->email == $user->email) {
+                $valid = \Validator::make($request->all(), [
+                'name' => 'required|min:5|max:255',
+                'email' => 'required|min:5|max:255',
+                'address' => 'required|min:20|max:255',
+                'phone' => 'required|digits_between:12,14',
+                'gender' => 'required',
+                'old_password' => 'required|min:8',
+                'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|different:old_password',
+                'confirm_password' => 'required|min:8',
+        ])->validate();
+            } else {
+                $valid = \Validator::make($request->all(), [
+                    'name' => 'required|min:5|max:255',
+                    'email' => 'required|min:5|max:255|unique:users,email|email',
+                    'address' => 'required|min:20|max:255',
+                    'phone' => 'required|digits_between:12,14',
+                    'gender' => 'required',
+                    'old_password' => 'required|min:8',
+                    'password' => 'required|required_with:confirm_password|same:confirm_password|min:8|different:old_password',
+                    'confirm_password' => 'required|min:8',
+            ])->validate();
+            }
+        } else {
+            if ($request->email == $user->email) {
+                $valid = \Validator::make($request->all(), [
+                'name' => 'required|min:5|max:255',
+                'email' => 'required|min:5|max:255',
+                'address' => 'required|min:20|max:255',
+                'phone' => 'required|digits_between:12,14',
+                'gender' => 'required',
+        ])->validate();
+            } else {
+                $valid = \Validator::make($request->all(), [
+                    'name' => 'required|min:5|max:255',
+                    'email' => 'required|min:5|max:255|unique:users,email|email',
+                    'address' => 'required|min:20|max:255',
+                    'phone' => 'required|digits_between:12,14',
+                    'gender' => 'required',
+            ])->validate();
+            }
+        }
+        //
+        if ($request->password) {
+            if (\Hash::check($request->old_password, \Auth::user()->password)) {
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->password = \Hash::make($request->password);
+                $user->address = $request->address;
+                $user->phone = $request->phone;
+                $user->gender = $request->gender;
+                $user->save();
+                return \redirect()->route('user.profile')->with('status', 'Data successfully updated')->with('type','success');
+            } else {
+                return \redirect()->route('user.profile')->with('status', 'The password doesnt match the old password')->with('type','danger');
+            }
+        } else {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->address = $request->address;
+            $user->phone = $request->phone;
+            $user->gender = $request->gender;
+            $user->save();
+            return \redirect()->route('user.profile')->with('status', 'Data successfully updated')->with('type','success');
+        }
     }
 }

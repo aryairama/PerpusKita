@@ -169,7 +169,7 @@
                                             <div class="u-text">
                                                 <h4>{{ \Auth::user()->name }}</h4>
                                                 <p class="text-muted">{{ \Auth::user()->email }}</p><a
-                                                    href="profile.html" class="btn btn-xs btn-secondary btn-sm">View
+                                                    href="{{ route('user.profile') }}" class="btn btn-xs btn-secondary btn-sm">View
                                                     Profile</a>
                                             </div>
                                         </div>
@@ -213,7 +213,7 @@
                             <div class="collapse in" id="collapseExample">
                                 <ul class="nav">
                                     <li>
-                                        <a href="#profile">
+                                        <a href="{{ route('user.profile') }}">
                                             <span class="link-collapse">My Profile</span>
                                         </a>
                                     </li>

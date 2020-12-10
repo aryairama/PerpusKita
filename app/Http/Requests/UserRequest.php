@@ -54,7 +54,7 @@ class UserRequest extends FormRequest
                 if($request->password){
                     return [
                         'name' => 'required|min:5|max:255',
-                        'email' => 'required|email|max:255',
+                        'email' => 'required|email|max:255|unique:users,email',
                         'password' => 'required|min:8|max:255',
                         'roles' => 'required',
                         'address' => 'required|min:20|max:255',
@@ -64,7 +64,7 @@ class UserRequest extends FormRequest
                 } else {
                     return [
                         'name' => 'required|min:5|max:255',
-                        'email' => 'required|email|max:255',
+                        'email' => 'required|email|max:255|unique:users,email',
                         'password' => 'min:0|max:255',
                         'roles' => 'required',
                         'address' => 'required|min:20|max:255',

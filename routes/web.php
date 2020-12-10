@@ -22,6 +22,8 @@ Route::get('/password/reset', function () {
 });
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home/profile', 'HomeController@userIndex')->name('user.profile');
+    Route::post('/home/profile/update', 'HomeController@userUpdate')->name('user.profile.update');
     //router crud user
     Route::get('user/listpetugas', 'UserController@user_petugas');
     Route::get('user/listsiswa', 'UserController@user_siswa');
