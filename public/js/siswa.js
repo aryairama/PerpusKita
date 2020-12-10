@@ -11,15 +11,15 @@ var table = $("#dashboard_siswa").DataTable({
             orderable: false
         },
         {
-            data: "users.name",
+            data: "name",
             name: "users.name"
         },
         {
-            data: "books.id",
+            data: "book_id",
             name: "books.id"
         },
         {
-            data: "books.title",
+            data: "title",
             name: "books.title"
         },
         {
@@ -27,8 +27,8 @@ var table = $("#dashboard_siswa").DataTable({
             name: "status_return",
         },
         {
-            data: "borrows.borrow_date",
-            name: "borrows.borrow_date",
+            data: "borrow_date",
+            name: "borrowed_books.borrow_date",
         },
         {
             data: "return_date",

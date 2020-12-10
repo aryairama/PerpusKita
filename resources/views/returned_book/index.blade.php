@@ -23,6 +23,7 @@ show
     responsive: true,
     processing: true,
     serverSide: true,
+    order : [[ 4, "desc" ]],
     ajax: "/returns",
     columns: [{
             data: "DT_RowIndex",
@@ -33,6 +34,10 @@ show
         {
             data: "users.name",
             name: "users.name"
+        },
+        {
+            data: "books.id",
+            name: "books.id"
         },
         {
             data: "books.title",
@@ -54,6 +59,9 @@ show
         }
     ]
 });
+window.onresize = function() {
+    table.columns.adjust().responsive.recalc();
+}
 </script>
 @endsection
 @section('content')
@@ -81,8 +89,9 @@ show
                         <table id="tabel_return" class="display table table-hover nowrap  w-100" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>User</th>
+                                    <th class="all">No</th>
+                                    <th class="all">User</th>
+                                    <th class="all">Book Id</th>
                                     <th>Book</th>
                                     <th>Status</th>
                                     <th>Date</th>

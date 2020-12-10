@@ -38,9 +38,11 @@ class HomeController extends Controller
             $returns = \App\returned_book::where('status_return', 'kembali')->get()->count();
             return view('home', \compact('users', 'books', 'borrows', 'returns'));
         } elseif (Gate::allows('roleSiswa')) {
-            $borrow_return = \App\returned_book::with('borrows')->with('books')->with('users')->where('status_return', 'pinjam')->whereHas('users', function ($query) {
-                $query->where('id', \Auth::user()->id);
-            });
+            $borrow_return = \DB::table('returned_books')->join('users', 'users.id', '=', 'returned_books.user_id')
+                                ->join('books', 'books.id', '=', 'returned_books.book_id')
+                                ->join('borrowed_books', 'borrowed_books.id', '=', 'returned_books.borrowed_book_id')
+                                ->where('returned_books.user_id', \Auth::user()->id)
+                                ->where('returned_books.status_return', 'pinjam');
             if ($request->ajax()) {
                 return DataTables::of($borrow_return)
             ->addIndexColumn()

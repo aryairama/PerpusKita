@@ -18,6 +18,7 @@ Borrow & Return Books
     processing: true,
     serverSide: true,
     ajax: "/returns/borrows/book",
+    order : [[ 5, "desc" ]],
     columns: [{
             data: "DT_RowIndex",
             name: "DT_RowIndex",

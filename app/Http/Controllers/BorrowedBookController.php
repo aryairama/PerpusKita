@@ -22,7 +22,7 @@ class BorrowedBookController extends Controller
     {
         $this->authorize('roleSiswa');
         $categories = Category::orderBy('id', 'ASC')->get();
-        $all_book = Book::with('categories')->where('status', 'ada')->paginate(4);
+        $all_book = Book::with('categories')->paginate(4);
         $book = $request->search_book;
         $category = $request->category;
         if ($request->search_book) {
@@ -30,11 +30,16 @@ class BorrowedBookController extends Controller
                 $all_book = Book::with('categories')->where('title', 'LIKE', "%$book%")
             ->whereHas('categories', function ($query) use ($category) {
                 $query->where('name', 'LIKE', "%$category%");
-            })->where('status', 'ada')->paginate(9);
+            })->paginate(4);
             } else {
                 $all_book = Book::with('categories')->where('title', 'LIKE', "%$book%")
-            ->where('status', 'ada')->paginate(9);
+            ->paginate(4);
             }
+        } elseif ($request->category) {
+            $all_book = Book::with('categories')->where('title', 'LIKE', "%$book%")
+            ->whereHas('categories', function ($query) use ($category) {
+                $query->where('name', 'LIKE', "%$category%");
+            })->paginate(4);
         }
         return view('borrowed_book.index', compact('categories', 'all_book'));
     }
@@ -97,7 +102,7 @@ class BorrowedBookController extends Controller
     {
         $this->authorize('roleSiswa');
         try {
-            $random_book =  Book::where('id', '!=', $id)->where('status', 'ada')->inRandomOrder()->limit(4)->get();
+            $random_book =  Book::where('id', '!=', $id)->inRandomOrder()->limit(4)->get();
             $show_book = Book::findOrFail($id);
             return view('borrowed_book.show', compact('show_book', 'random_book'));
         } catch (\Throwable $th) {

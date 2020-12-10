@@ -9,10 +9,10 @@ Detail Book {{ $show_book->title }}
 <script src="{{ asset('js/borrow.js') }}"></script>
 @endsection
 @section('borrow1')
-    active
+active
 @endsection
 @section('borrow2')
-    show
+show
 @endsection
 @section('content')
 <div class="panel-header bg-primary-gradient">
@@ -31,7 +31,8 @@ Detail Book {{ $show_book->title }}
                 <div class="card-header">
                     <div class="card-head-row">
                         <div class="card-tools">
-                            <a href="{{ URL::previous() }}" class="btn btn-sm btn-rounded btn-primary">Back</a>
+                            <a href="#" onclick="window.history.back()"
+                                class="btn btn-sm btn-rounded btn-primary">Back</a>
                         </div>
                     </div>
                 </div>
@@ -65,6 +66,12 @@ Detail Book {{ $show_book->title }}
                                             <td>{{ $show_book->publisher }}</td>
                                         </tr>
                                         <tr>
+                                            <td class="font-weight-bold">Category</td>
+                                            <td>@foreach ($show_book->categories as $book)
+                                                {{ $book->name }},
+                                                @endforeach</td>
+                                        </tr>
+                                        <tr>
                                             <td class="font-weight-bold">Status Buku</td>
                                             <td>{{ $show_book->status }}</td>
                                         </tr>
@@ -75,9 +82,11 @@ Detail Book {{ $show_book->title }}
                                     </tbody>
                                 </table>
                             </div>
+                            @if ($show_book->status == "ada")
                             <button onclick="borrow_book('{{ $show_book->id }}')"
                                 class="btn btn-sm btn-rounded btn-primary {{ $show_book->id }}">Select
                                 Book</button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -93,7 +102,8 @@ Detail Book {{ $show_book->title }}
                         @foreach ($random_book as $book)
                         <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-3 card-group">
                             <div class="card shadow rounded">
-                                <img src="{{ asset('storage/'.$book->cover) }}" alt="" class="card-img-top">
+                                <img src="{{ asset('storage/'.$book->cover) }}" alt="" class="card-img-top"
+                                    height="240px" width="180px">
                                 <div class="card-body">
                                     <h4 class="card-title text-truncate font-weight-bolder">
                                         {{ $book->title }}
@@ -104,12 +114,26 @@ Detail Book {{ $show_book->title }}
                                         {{ $category->name }},
                                         @endforeach
                                     </h6>
+                                    <h6 class="card-subtitle text-truncate mt-1">
+                                        Status : @if ($book->status == "ada")
+                                        <span class="badge badge-success">{{ $book->status }}</span>
+                                        @elseif($book->status == "pinjam")
+                                        <span class="badge badge-primary">{{ $book->status }}</span>
+                                        @elseif($book->status == "rusak")
+                                        <span class="badge badge-warning">{{ $book->status }}</span>
+                                        @elseif($book->status == "hilang")
+                                        <span class="badge badge-danger">{{ $book->status }}</span>
+                                        @endif
+                                    </h6>
                                 </div>
                                 <div class="card-footer pt-0 align-self-center text-center">
+                                    @if ($book->status == "ada")
                                     <button onclick="borrow_book('{{ $book->id }}')"
                                         class="btn btn-sm btn-rounded btn-outline-primary mt-2 {{ $book->id }}">Select
                                         Book</button>
-                                    <a href="{{ route('borrows.show',[$book->id]) }}" class="btn btn-sm btn-rounded btn-outline-secondary mt-2">Detail Book</a>
+                                    @endif
+                                    <a href="{{ route('borrows.show',[$book->id]) }}"
+                                        class="btn btn-sm btn-rounded btn-outline-secondary mt-2">Detail Book</a>
                                 </div>
                             </div>
                         </div>

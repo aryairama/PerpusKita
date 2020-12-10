@@ -52,7 +52,8 @@ show
                         @foreach ($all_book as $book)
                         <div class="col-lg-3 col-md-4 col-sm-4 col-6 mt-3 card-group">
                             <div class="card shadow rounded">
-                                <img src="storage/{{ $book->cover }}" alt="" class="card-img-top">
+                                <img src="storage/{{ $book->cover }}" alt="" class="card-img-top" height="240px"
+                                    width="180px">
                                 <div class="card-body">
                                     <h4 class="card-title text-truncate font-weight-bolder">
                                         {{ $book->title }}
@@ -63,11 +64,24 @@ show
                                         {{ $category->name }},
                                         @endforeach
                                     </h6>
+                                    <h6 class="card-subtitle text-truncate mt-1">
+                                        Status : @if ($book->status == "ada")
+                                        <span class="badge badge-success">{{ $book->status }}</span>
+                                        @elseif($book->status == "pinjam")
+                                        <span class="badge badge-primary">{{ $book->status }}</span>
+                                        @elseif($book->status == "rusak")
+                                        <span class="badge badge-warning">{{ $book->status }}</span>
+                                        @elseif($book->status == "hilang")
+                                        <span class="badge badge-danger">{{ $book->status }}</span>
+                                        @endif
+                                    </h6>
                                 </div>
                                 <div class="card-footer pt-0 align-self-center text-center">
+                                    @if ($book->status == "ada")
                                     <button onclick="borrow_book('{{ $book->id }}')"
                                         class="btn btn-sm btn-rounded btn-outline-primary mt-2 {{ $book->id }}">Select
                                         Book</button>
+                                    @endif
                                     <a href="{{ route('borrows.show',[$book->id]) }}"
                                         class="btn btn-sm btn-rounded btn-outline-secondary mt-2">Detail Book</a>
                                 </div>

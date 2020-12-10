@@ -130,7 +130,9 @@ class ReturnedBookController extends Controller
         if (Gate::allows('rolePetugas')) {
             $borrow_return = returned_book::with('borrows')->with('books')->with('users');
         } elseif (Gate::allows('roleSiswa')) {
-            $borrow_return = returned_book::with('borrows')->with('books')->with('users')->where('user_id', \Auth::user()->id);
+            $borrow_return = \App\returned_book::with('borrows')->with('books')->with('users')->whereHas('users', function ($query) {
+                $query->where('id', \Auth::user()->id);
+            });
         }
         if ($request->ajax()) {
             return DataTables::of($borrow_return)

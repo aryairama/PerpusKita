@@ -178,9 +178,11 @@
                         </div>
                         <div class="card-tools">
                             @can('roleSiswa')
-                            <a href="{{ route('returns.borrows.book') }}" class="btn btn-rounded btn-primary btn-sm">Return Book</a>
+                            <a href="{{ route('returns.borrows.book') }}"
+                                class="btn btn-rounded btn-primary btn-sm">Return Book</a>
                             @elsecan('rolePetugas')
-                            <a href="{{ route('returns.borrows.book') }}" class="btn btn-rounded btn-primary btn-sm">Book return verification</a>
+                            <a href="{{ route('returns.borrows.book') }}"
+                                class="btn btn-rounded btn-primary btn-sm">Book return verification</a>
                             @endcan
                         </div>
                     </div>

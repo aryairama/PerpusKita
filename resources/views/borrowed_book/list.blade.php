@@ -14,6 +14,7 @@
     responsive: true,
     processing: true,
     serverSide: true,
+    order : [[ 4, "desc" ]],
     ajax: "/borrows/bookslist",
     columns: [{
             data: "DT_RowIndex",
@@ -24,6 +25,10 @@
         {
             data: "users.name",
             name: "users.name"
+        },
+        {
+            data: "books.id",
+            name: "books.id"
         },
         {
             data: "books.title",
@@ -41,7 +46,9 @@
         }
     ]
 });
-
+window.onresize = function() {
+    table.columns.adjust().responsive.recalc();
+}
 </script>
 @endsection
 @section('title')
@@ -81,8 +88,9 @@ show
                         <table id="tabel_borrow" class="display table table-hover nowrap  w-100" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>User</th>
+                                    <th class="all">No</th>
+                                    <th class="all">User</th>
+                                    <th class="all">Book Id</th>
                                     <th>Book</th>
                                     <th>Date</th>
                                     <th>Action</th>
