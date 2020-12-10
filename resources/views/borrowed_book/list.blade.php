@@ -68,9 +68,6 @@ show
                 <h2 class="text-white pb-2 fw-bold">Borrow Book List</h2>
                 <h5 class="text-white op-7 mb-2">Read Update Delete Borrow Book List Data</h5>
             </div>
-            <div class="ml-md-auto py-2 py-md-0">
-                <a href="{{ route('borrows.index') }}" class="btn btn-secondary btn-round">Create Borrow Book</a>
-            </div>
         </div>
     </div>
 </div>

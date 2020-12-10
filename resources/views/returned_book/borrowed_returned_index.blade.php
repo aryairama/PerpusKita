@@ -18,12 +18,12 @@ Borrow & Return Books
     processing: true,
     serverSide: true,
     ajax: "/returns/borrows/book",
-    order : [[ 5, "desc" ]],
+    order : [[ 0, "desc" ]],
     columns: [{
             data: "DT_RowIndex",
-            name: "DT_RowIndex",
+            name: "id",
             searchable: false,
-            orderable: false
+            orderable: true
         },
         {
             data: "users.name",

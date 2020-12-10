@@ -28,19 +28,16 @@ function borrow_book(id) {
                 },
                 success: function (ress) {
                     if (ress.method === "save") {
-                        $(`.${id}`).parentsUntil('.row').remove()
                         notifAlert1('Sukses', 'Data has been saved successfully', 'success')
                     } else if (ress == 404) {
                         notifAlert1('Error', 'Data Not Found', 'error')
                     }
                 },
                 error: function (err) {
-                    console.log(err)
                     if (err.status == 404) {
                         notifAlert1('Error', 'Data Not Found', 'error')
                     } else if (err.status == 403) {
                         notifAlert1('Info', err.responseText, 'info')
-                        $(`.${id}`).parentsUntil('.row').remove()
                     }
                 }
             })
@@ -52,7 +49,6 @@ function notifAlert1(header, pesan, type) {
     Swal.fire(`${header}`, `${pesan}`, `${type}`).then(result => {
         if (result.isConfirmed) {
             location.reload()
-            window.location = "http://127.0.0.1:8000/borrows";
         }
     });
 }
