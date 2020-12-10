@@ -217,16 +217,6 @@
                                             <span class="link-collapse">My Profile</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#edit">
-                                            <span class="link-collapse">Edit Profile</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#settings">
-                                            <span class="link-collapse">Settings</span>
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -329,26 +319,11 @@
                 <div class="container-fluid">
                     <nav class="pull-left">
                         <ul class="nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="https://www.themekita.com">
-                                    ThemeKita
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Help
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    Licenses
-                                </a>
-                            </li>
                         </ul>
                     </nav>
                     <div class="copyright ml-auto">
-                        2018, made with <i class="fa fa-heart heart text-danger"></i> by <a
-                            href="https://www.themekita.com">ThemeKita</a>
+                        2020, made with <i class="fa fa-heart heart text-danger"></i> by <a
+                            href="https://www.facebook.com/arya.yol">Arya Irama Wahono</a>
                     </div>
                 </div>
             </footer>

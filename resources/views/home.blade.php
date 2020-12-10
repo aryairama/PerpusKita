@@ -164,6 +164,24 @@
         </div>
     </div>
     @endcan
+    @can('rolePetugas')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-head-row">
+                        <div class="card-title">Student book loan statistics</div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div>
+                        {!! $chartPinjam->render() !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endcan
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -232,10 +250,20 @@
 @can('roleSiswa')
 <script src="{{ asset('js/siswa.js') }}"></script>
 @elsecan('rolePetugas')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"
+    integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA=="
+    crossorigin="anonymous"></script>
+
 <script src="{{ asset('js/petugas.js') }}"></script>
 @endcan
 @endsection
 @section('css')
 <link rel="stylesheet" type="text/css"
     href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/b-1.6.5/r-2.2.6/sc-2.0.3/datatables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css"
+    integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w=="
+    crossorigin="anonymous" />
 @endsection

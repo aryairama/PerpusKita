@@ -21,21 +21,24 @@ Borrow & Return Books
     order : [[ 0, "desc" ]],
     columns: [{
             data: "DT_RowIndex",
-            name: "id",
+            name: "returned_books.id",
             searchable: false,
             orderable: true
         },
         {
             data: "users.name",
-            name: "users.name"
+            name: "users.name",
+            orderable: false
         },
         {
             data: "books.id",
-            name: "books.id"
+            name: "books.id",
+            orderable: false
         },
         {
             data: "books.title",
-            name: "books.title"
+            name: "books.title",
+            orderable: false
         },
         {
             data: "status_return",
@@ -44,10 +47,12 @@ Borrow & Return Books
         {
             data: "borrows.borrow_date",
             name: "borrows.borrow_date",
+            orderable: false
         },
         {
             data: "return_date",
             name: "return_date",
+            orderable: false
         },
         {
             data: "action",
