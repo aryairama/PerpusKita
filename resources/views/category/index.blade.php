@@ -16,12 +16,13 @@ All Category
     var table = $("#tabel_category").DataTable({
     processing: true,
     serverSide: true,
+    order : [[ 0, "desc" ]],
     ajax: "/category",
     columns: [{
             data: "DT_RowIndex",
-            name: "DT_RowIndex",
+            name: "categories.id",
             searchable: false,
-            orderable: false
+            orderable: true
         },
         {
             data: "name",
@@ -35,6 +36,10 @@ All Category
         }
     ]
 });
+
+window.onresize = function() {
+    table.columns.adjust().responsive.recalc();
+}
 
 function deleteForm(id) {
     Swal.fire({
@@ -216,7 +221,6 @@ $(function () {
                 <h5 class="text-white op-7 mb-2">Create Read Update Delete Category Book Data</h5>
             </div>
             <div class="ml-md-auto py-2 py-md-0">
-                <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
                 <a href="#" onclick="addForm()" class="btn btn-secondary btn-round">Create Category</a>
             </div>
         </div>

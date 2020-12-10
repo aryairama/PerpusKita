@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        $category = Category::orderBy('id', 'ASC');
+        $category = \DB::table('categories')->select(['id', 'name',]);
         if ($request->ajax()) {
             return DataTables::of($category)
             ->addIndexColumn()
