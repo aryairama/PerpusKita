@@ -145,7 +145,7 @@ class UserController extends Controller
 
     public function user_petugas(Request $request)
     {
-        $petugas = User::where('roles', 'petugas')->orderBy('id', 'ASC');
+        $petugas = User::where('roles', 'petugas');
         if ($request->ajax()) {
             return DataTables::of($petugas)
             ->addIndexColumn()
@@ -160,7 +160,7 @@ class UserController extends Controller
 
     public function user_siswa(Request $request)
     {
-        $siswa = User::where('roles', 'siswa')->orderBy('id', 'ASC');
+        $siswa = User::where('roles', 'siswa');
         if ($request->ajax()) {
             return DataTables::of($siswa)
             ->addIndexColumn()

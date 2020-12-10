@@ -18,12 +18,13 @@ All User
     responsive: true,
     processing: true,
     serverSide: true,
+    order : [[ 0, "desc" ]],
     ajax: "/user/listpetugas",
     columns: [{
             data: "DT_RowIndex",
-            name: "DT_RowIndex",
+            name: "users.id",
             searchable: false,
-            orderable: false
+            orderable: true
         },
         {
             data: "name",
@@ -59,12 +60,13 @@ var table2 = $("#tabel_siswa").DataTable({
     responsive: true,
     processing: true,
     serverSide: true,
+    order : [[ 0, "desc" ]],
     ajax: "/user/listsiswa",
     columns: [{
             data: "DT_RowIndex",
-            name: "DT_RowIndex",
+            name: "users.id",
             searchable: false,
-            orderable: false
+            orderable: true
         },
         {
             data: "name",
