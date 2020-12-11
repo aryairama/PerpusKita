@@ -37,7 +37,8 @@
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="blue">
                 <a href="{{ route('home') }}" class="logo">
-                    <object type="image/svg+xml" class="navbar-brand" data="{{ asset('/assets/img/perpus.svg') }}" width="140px" height="60px">
+                    <object type="image/svg+xml" class="navbar-brand" data="{{ asset('/assets/img/perpus.svg') }}"
+                        width="140px" height="60px">
                         Your browser does not support SVG.
                     </object>
                 </a>
@@ -170,7 +171,8 @@
                                             <div class="u-text">
                                                 <h4>{{ \Auth::user()->name }}</h4>
                                                 <p class="text-muted">{{ \Auth::user()->email }}</p><a
-                                                    href="{{ route('user.profile') }}" class="btn btn-xs btn-secondary btn-sm">View
+                                                    href="{{ route('user.profile') }}"
+                                                    class="btn btn-xs btn-secondary btn-sm">View
                                                     Profile</a>
                                             </div>
                                         </div>
@@ -402,13 +404,15 @@
         </div>
         <!-- End Custom template -->
     </div>
+    @include('loader.loader')
     <!--   Core JS Files   -->
     <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.22/b-1.6.5/cr-1.5.2/fc-3.3.1/fh-3.1.7/r-2.2.6/sc-2.0.3/sb-1.0.0/sp-1.2.1/datatables.min.js">
     </script>
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
-
+    {{-- Loader --}}
+    <script src="{{ asset('/js/loader.js') }}"></script>
     <!-- jQuery UI -->
     <script src="{{ asset('assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js') }}"></script>

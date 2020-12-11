@@ -99,6 +99,9 @@
             </div>
         </main>
     </div>
+    @include('loader.loader')
     <script src="{{ asset('/js/login.js') }}"></script>
+    <script src="{{ asset('/assets/js/core/jquery.3.2.1.min.js') }}"></script>
+    <script src="{{ asset('/js/loader.js') }}"></script>
 </body>
 </html>
