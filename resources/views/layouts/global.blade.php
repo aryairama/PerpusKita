@@ -36,9 +36,10 @@
         <div class="main-header">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="blue">
-
                 <a href="{{ route('home') }}" class="logo">
-                    <img src="{{ asset('/assets/img/perpus.svg') }}" alt="navbar brand" class="navbar-brand" width="140px" height="60px">
+                    <object type="image/svg+xml" class="navbar-brand" data="{{ asset('/assets/img/perpus.svg') }}" width="140px" height="60px">
+                        Your browser does not support SVG.
+                    </object>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
