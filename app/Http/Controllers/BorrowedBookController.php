@@ -69,7 +69,7 @@ class BorrowedBookController extends Controller
                 $borrow = new borrowed_book();
                 $borrow->user_id = \Auth::user()->id;
                 $borrow->book_id = $request->book_id;
-                $borrow->borrow_date = Carbon::now()->format('yy-m-d H:i:s');
+                $borrow->borrow_date = Carbon::now();
                 $borrow->save();
                 $returned = new returned_book();
                 $returned->user_id = \Auth::user()->id;

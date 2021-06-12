@@ -88,7 +88,7 @@ class ReturnedBookController extends Controller
         try {
             $return_book = returned_book::findOrFail($id);
             $return_book->status_return = "verif_kembali";
-            $return_book->return_date = Carbon::now()->format('yy-m-d H:i:s');
+            $return_book->return_date = Carbon::now();
             $return_book->save();
             return \Response::json(['method' => 'save'], 200);
         } catch (\Throwable $th) {
